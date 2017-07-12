@@ -1,12 +1,12 @@
 package com.example.tmd.data_binding;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import com.example.tmd.data_binding.databinding.ItemRecyclerviewBinding;
 import java.util.List;
 
 /**
@@ -42,18 +42,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mAvatar;
-        private TextView mName;
+        private ItemRecyclerviewBinding mBinding;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mAvatar = itemView.findViewById(R.id.image_view);
-            mName = itemView.findViewById(R.id.text_view);
+            mBinding = DataBindingUtil.bind(itemView);
         }
 
         public void bindData(Item item) {
-            mAvatar.setImageResource(item.getAvatar());
-            mName.setText(item.getName());
+            mBinding.setItem(item);
         }
     }
 }
